@@ -1,0 +1,10 @@
+{
+  "name": "mahjong-kun",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "author": "horitayuya@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}
