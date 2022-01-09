@@ -11,3 +11,6 @@ export type WindTile = "east" | "south" | "west" | "north"
 export type HonourTile = WindTile | DragonTile
 
 export type Tile = SuitTile | HonourTile
+
+export type TileSet = [Tile, Tile, Tile]
+export type TilePair = [Tile, Tile]

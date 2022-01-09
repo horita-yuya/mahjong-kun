@@ -1,7 +1,8 @@
 export type Num = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 
-export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? true : false
 export type Not<X extends boolean> = X extends false ? true : false
+export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T extends Y ? 1 : 2) ? true : false
+export type NotEqual<X, Y> = Not<Equal<X, Y>>
 
 export type And<X extends boolean, Y extends boolean> = X extends true ? Y extends true ? true : false : false
 export type And3<X extends boolean, Y extends boolean, Z extends boolean> = And<And<X, Y>, Z>
