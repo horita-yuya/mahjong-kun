@@ -14,16 +14,16 @@ export type IsChow<SET extends [Tile, Tile, Tile]> = SET extends [`${TileMark}${
 type IsOne<TILE extends Tile> = TILE extends `${TileMark}${infer X}` ? Equal<X, "1"> : false
 type IsNine<TILE extends Tile> = TILE extends `${TileMark}${infer X}` ? Equal<X, "9"> : false
 
-export type IsKanchanWinning<SET extends TileSet, WINNING extends SET[number]> = And<IsChow<SET>, Equal<WINNING, SET[1]>>
+export type IsKanchan<SET extends TileSet, WINNING extends SET[number]> = And<IsChow<SET>, Equal<WINNING, SET[1]>>
 
-export type IsPencyanWinning<SET extends TileSet, WINNING extends SET[number]> = Or<
+export type IsPencyan<SET extends TileSet, WINNING extends SET[number]> = Or<
   // 1, 2, '3'
   And3<IsChow<SET>, IsOne<SET[0]>, Equal<WINNING, SET[2]>>,
   // '7', 8, 9
   And3<IsChow<SET>, IsNine<SET[2]>, Equal<WINNING, SET[0]>>
   >
 
-export type IsRyanmenWinning<SET extends TileSet, WINNING extends SET[number]> = And<
-  Not<IsPencyanWinning<SET, WINNING>>,
+export type IsRyanmen<SET extends TileSet, WINNING extends SET[number]> = And<
+  Not<IsPencyan<SET, WINNING>>,
   And<IsChow<SET>, Or<Equal<WINNING, SET[0]>, Equal<WINNING, SET[2]>>>
   >

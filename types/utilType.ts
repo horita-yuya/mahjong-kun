@@ -8,6 +8,7 @@ export type And<X extends boolean, Y extends boolean> = X extends true ? Y exten
 export type And3<X extends boolean, Y extends boolean, Z extends boolean> = And<And<X, Y>, Z>
 export type And4<X extends boolean, Y extends boolean, Z extends boolean, W extends boolean> = And3<And<X, Y>, Z, W>
 export type And5<A extends boolean, B extends boolean, C extends boolean, D extends boolean, E extends boolean> = And4<And<A, B>, C, D, E>
+export type And6<A extends boolean, B extends boolean, C extends boolean, D extends boolean, E extends boolean, F extends boolean> = And5<And<A, B>, C, D, E, F>
 
 export type Or<X extends boolean, Y extends boolean> = X extends true ? true : Y extends true ? true : false
 export type Or3<X extends boolean, Y extends boolean, Z extends boolean> = Or<X, Y> extends true ? true : Z extends true ? true : false
