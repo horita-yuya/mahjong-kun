@@ -1,4 +1,4 @@
-import { Equal, ExpectFalse, ExpectTrue, IsContinuousNumber } from "../types/utilTypes";
+import { Equal, ExpectFalse, ExpectTrue, IsContinuousNumber } from "../types/utilType";
 
 type IsContinuousNumberCase1 = ExpectTrue<IsContinuousNumber<"1", "2", "3">>
 type IsContinuousNumberCase2 = ExpectTrue<IsContinuousNumber<"2", "3", "4">>
