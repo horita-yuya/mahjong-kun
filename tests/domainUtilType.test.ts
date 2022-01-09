@@ -1,4 +1,4 @@
-import { IsChow, IsSameMark } from "../types/domainUtilType";
+import { IsChow, IsRyanmenWinning, IsSameMark } from "../types/domainUtilType";
 import { ExpectFalse, ExpectTrue } from "../types/utilType";
 
 // SameMark
@@ -10,6 +10,29 @@ type Case5 = ExpectFalse<IsSameMark<["o1", "C2", "o3"]>>
 type Case6 = ExpectTrue<IsSameMark<["o1", "o3", "o6"]>>
 type Case7 = ExpectTrue<IsSameMark<["C2", "C4", "C8"]>>
 type Case8 = ExpectTrue<IsSameMark<["I1", "I1", "I1"]>>
+
+// Ryanmen Check
+type RyanmenCase1 = ExpectTrue<IsRyanmenWinning<[
+  "o1", "o2", "o3",
+  "I1", "I2", "I3",
+  "C4", "C5", "C6",
+  "I6", "I7", "I8",
+  "west", "west"
+], "I8">>
+type RyanmenCase2 = ExpectFalse<IsRyanmenWinning<[
+  "o1", "o2", "o3",
+  "I1", "I2", "I3",
+  "C4", "C5", "C6",
+  "I6", "I7", "I8",
+  "west", "west"
+], "I7">>
+type RyanmenCase3 = ExpectFalse<IsRyanmenWinning<[
+  "o1", "o2", "o3",
+  "I1", "I2", "I3",
+  "C4", "C5", "C6",
+  "I6", "I7", "I8",
+  "west", "west"
+], "o3">>
 
 // IsChow
 type IsChowCase1 = ExpectTrue<IsChow<["I1", "I2", "I3"]>>

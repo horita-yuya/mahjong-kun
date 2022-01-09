@@ -18,3 +18,12 @@ type PinhuCase2 = ExpectFalse<IsPinhu<[
   "o4", "o4"
 ],
   "I7">>
+
+type PinhuCase3 = ExpectTrue<IsPinhu<[
+  "o1", "o2", "o3",
+  "I1", "I2", "I3",
+  "C4", "C5", "C6",
+  "I6", "I7", "I8",
+  "west", "west"
+],
+  "I8">>
