@@ -1,6 +1,7 @@
 import { Tile, TileMark, TileSet } from "./tile";
-import { And, And3, Equal, IsContinuousNumber, Not, Num, Or, Or4 } from "./utilType";
+import { And, And3, Equal, ExpectTrue, IsContinuousNumber, Not, Num, Or, Or4 } from "./utilType";
 import { Hand } from "./hand";
+import { Yaku } from "./yaku";
 
 export type IsHead<PAIR extends [Tile, Tile]> = Equal<PAIR[0], PAIR[1]>
 

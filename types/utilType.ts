@@ -14,6 +14,8 @@ export type Or<X extends boolean, Y extends boolean> = X extends true ? true : Y
 export type Or3<X extends boolean, Y extends boolean, Z extends boolean> = Or<X, Y> extends true ? true : Z extends true ? true : false
 export type Or4<X extends boolean, Y extends boolean, Z extends boolean, W extends boolean> = Or3<X, Y, Z> extends true ? true : W extends true ? true : false
 
+export type Concat<BASE extends number[], NUMS extends number[]> = [...BASE, ...NUMS]
+
 export type Next<NUM extends string> = NUM extends "1" ? "2" :
   NUM extends "2" ? "3" :
     NUM extends "3" ? "4" :
