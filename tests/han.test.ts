@@ -1,5 +1,4 @@
-import { Equal, ExpectTrue } from "../types/utilType";
-import { HanValue, NakiHanValue } from "../types/han";
+import { Equal, ExpectTrue, HanValue, NakiHanValue } from "../types";
 
 type Case1 = ExpectTrue<Equal<HanValue<["pinhu"]>, 1>>
 type Case2 = ExpectTrue<Equal<HanValue<["richi", "pinhu"]>, 2>>

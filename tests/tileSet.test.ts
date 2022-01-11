@@ -1,7 +1,7 @@
-import { ExpectFalse, ExpectTrue } from "../types/utilType";
-import { IsChow, IsSameMark } from "../types/tileSet";
 
 // SameMark
+import { ExpectFalse, ExpectTrue, IsChow, IsSameMark } from "../types";
+
 type Case1 = ExpectFalse<IsSameMark<["I1", "o2", "I3"]>>
 type Case2 = ExpectFalse<IsSameMark<["o1", "I2", "I3"]>>
 type Case3 = ExpectFalse<IsSameMark<["o1", "o2", "C3"]>>

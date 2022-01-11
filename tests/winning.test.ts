@@ -1,5 +1,4 @@
-import { ExpectFalse, ExpectTrue } from "../types/utilType";
-import { IsPencyan, IsRyanmen } from "../types/winning";
+import { ExpectFalse, ExpectTrue, IsPencyan, IsRyanmen } from "../types";
 
 type RyanmenCase1 = ExpectTrue<IsRyanmen<["o1", "o2", "o3",], "o1">>
 type RyanmenCase2 = ExpectTrue<IsRyanmen<["o7", "o8", "o9",], "o9">>
