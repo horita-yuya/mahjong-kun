@@ -1,6 +1,8 @@
 import { Hand } from "./hand";
-import { And, And5, And6, AndAll, Or4 } from "./utilType";
-import { IsChow, IsChowOrSet, IsChunChan, IsHead, IsRyanmen, IsSet } from "./domainUtilType";
+import { AndAll, Or4 } from "./utilType";
+import { IsChow, IsChowOrSet, IsHead, IsSet } from "./tileSet";
+import { IsRyanmen } from "./winning";
+import { IsChunChan } from "./tile";
 
 type Chunk1<HAND extends Hand> = [HAND[0], HAND[1], HAND[2]]
 type Chunk2<HAND extends Hand> = [HAND[3], HAND[4], HAND[5]]
@@ -11,11 +13,13 @@ type Head<HAND extends Hand> = [HAND[12], HAND[13]]
 type ZeroYaku = "zero"
 export type Yaku = ZeroYaku | "richi" | "pinhu" | "menzenTumo" | "ippatu" | "tanyao" | "toitoi" | "sanshoku" | "ipeko";
 
-export type IsWinningShape<HAND extends Hand> = And5<IsChowOrSet<Chunk1<HAND>>,
+export type IsWinningShape<HAND extends Hand> = AndAll<[
+  IsChowOrSet<Chunk1<HAND>>,
   IsChowOrSet<Chunk2<HAND>>,
   IsChowOrSet<Chunk3<HAND>>,
   IsChowOrSet<Chunk4<HAND>>,
-  IsHead<Head<HAND>>>
+  IsHead<Head<HAND>>
+]>
 
 export type YakuAll<HAND extends Hand, WINNING extends HAND[number]> = [
   YakuPinhu<HAND, WINNING>,
@@ -23,7 +27,8 @@ export type YakuAll<HAND extends Hand, WINNING extends HAND[number]> = [
   YakuToiToi<HAND, WINNING>
 ]
 
-export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number]> = And6<IsChow<Chunk1<HAND>>,
+export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number]> = AndAll<[
+  IsChow<Chunk1<HAND>>,
   IsChow<Chunk2<HAND>>,
   IsChow<Chunk3<HAND>>,
   IsChow<Chunk4<HAND>>,
@@ -31,7 +36,8 @@ export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number]> = And6<Is
   Or4<IsRyanmen<Chunk1<HAND>, WINNING>,
     IsRyanmen<Chunk2<HAND>, WINNING>,
     IsRyanmen<Chunk3<HAND>, WINNING>,
-    IsRyanmen<Chunk4<HAND>, WINNING>>> extends true ? "pinhu" : ZeroYaku;
+    IsRyanmen<Chunk4<HAND>, WINNING>>
+]> extends true ? "pinhu" : ZeroYaku;
 
 export type YakuTanyao<HAND extends Hand, WINNING extends HAND[number]> = AndAll<[
   IsWinningShape<HAND>,
@@ -51,8 +57,10 @@ export type YakuTanyao<HAND extends Hand, WINNING extends HAND[number]> = AndAll
   IsChunChan<HAND[13]>,
 ]> extends true ? "tanyao" : ZeroYaku;
 
-export type YakuToiToi<HAND extends Hand, WINNING extends HAND[number]> = And5<IsChow<Chunk1<HAND>>,
+export type YakuToiToi<HAND extends Hand, WINNING extends HAND[number]> = AndAll<[
+  IsSet<Chunk1<HAND>>,
   IsSet<Chunk2<HAND>>,
   IsSet<Chunk3<HAND>>,
   IsSet<Chunk4<HAND>>,
-  IsHead<[HAND[12], HAND[13]]>> extends true ? "toitoi" : ZeroYaku;
+  IsHead<Head<HAND>>
+]> extends true ? "toitoi" : ZeroYaku;
