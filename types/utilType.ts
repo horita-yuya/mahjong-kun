@@ -5,6 +5,7 @@ export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends (<T>() => T ext
 export type NotEqual<X, Y> = Not<Equal<X, Y>>
 
 export type And<X extends boolean, Y extends boolean> = X extends true ? Y extends true ? true : false : false
+export type AndAll<ALL extends boolean[]> = ALL extends [infer X, ...(infer Y)] ? X extends boolean ? Y extends boolean[] ? And<X, AndAll<Y>> : false : false : true
 export type And3<X extends boolean, Y extends boolean, Z extends boolean> = And<And<X, Y>, Z>
 export type And4<X extends boolean, Y extends boolean, Z extends boolean, W extends boolean> = And3<And<X, Y>, Z, W>
 export type And5<A extends boolean, B extends boolean, C extends boolean, D extends boolean, E extends boolean> = And4<And<A, B>, C, D, E>

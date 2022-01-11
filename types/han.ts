@@ -2,6 +2,7 @@ import { ConcatAll } from "./utilType";
 import { Yaku } from "./yaku";
 
 type Han = {
+  zero: [],
   richi: [1],
   pinhu: [1],
   menzenTumo: [1],
@@ -13,6 +14,7 @@ type Han = {
 }
 
 type NakiHan = {
+  zero: [],
   richi: [],
   pinhu: [],
   menzenTumo: [],

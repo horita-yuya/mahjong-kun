@@ -1,4 +1,4 @@
-import { Tile, TileMark } from "./tile";
+import { Tile } from "./tile";
 
 export type Hand = [
   Tile, Tile, Tile,

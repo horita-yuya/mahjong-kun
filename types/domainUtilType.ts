@@ -1,7 +1,5 @@
 import { Tile, TileMark, TileSet } from "./tile";
-import { And, And3, Equal, ExpectTrue, IsContinuousNumber, Not, Num, Or, Or4 } from "./utilType";
-import { Hand } from "./hand";
-import { Yaku } from "./yaku";
+import { And, And3, Equal, IsContinuousNumber, Not, Num, Or, Or3, Or4 } from "./utilType";
 
 export type IsHead<PAIR extends [Tile, Tile]> = Equal<PAIR[0], PAIR[1]>
 
@@ -11,9 +9,19 @@ export type IsSameMark<SET extends [Tile, Tile, Tile]> =
 
 export type IsChow<SET extends [Tile, Tile, Tile]> = SET extends [`${TileMark}${infer X}`, `${TileMark}${infer Y}`, `${TileMark}${infer Z}`] ?
   And<IsContinuousNumber<X, Y, Z>, IsSameMark<SET>> : false;
+export type IsSet<SET extends [Tile, Tile, Tile]> = And<Equal<SET[0], SET[1]>, Equal<SET[0], SET[2]>>
+
+export type IsChowOrSet<SET extends [Tile, Tile, Tile]> = Or<IsChow<SET>, IsSet<SET>>;
 
 type IsOne<TILE extends Tile> = TILE extends `${TileMark}${infer X}` ? Equal<X, "1"> : false
 type IsNine<TILE extends Tile> = TILE extends `${TileMark}${infer X}` ? Equal<X, "9"> : false
+
+export type IsWind<TILE extends Tile> = Or4<Equal<TILE, "east">, Equal<TILE, "south">, Equal<TILE, "west">, Equal<TILE, "north">>
+export type IsDragon<TILE extends Tile> = Or3<Equal<TILE, "white">, Equal<TILE, "green">, Equal<TILE, "red">>
+export type IsHonour<TILE extends Tile> = Or<IsWind<TILE>, IsDragon<TILE>>
+
+export type IsYaochu<TILE extends Tile> = Or3<IsOne<TILE>, IsNine<TILE>, IsHonour<TILE>>
+export type IsChunChan<TILE extends Tile> = Not<IsYaochu<TILE>>
 
 export type IsKanchan<SET extends TileSet, WINNING extends SET[number]> = And<IsChow<SET>, Equal<WINNING, SET[1]>>
 
