@@ -7,7 +7,7 @@ type Chunk2<HAND extends Hand> = [HAND[3], HAND[4], HAND[5]]
 type Chunk3<HAND extends Hand> = [HAND[6], HAND[7], HAND[8]]
 type Chunk4<HAND extends Hand> = [HAND[9], HAND[10], HAND[11]]
 
-export type Yaku = "pinhu"
+export type Yaku = "richi" | "pinhu" | "menzenTumo" | "ippatu" | "tanyao" | "toitoi" | "sanshoku" | "ipeko";
 
 export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number]> = And6<IsChow<Chunk1<HAND>>,
   IsChow<Chunk2<HAND>>,
