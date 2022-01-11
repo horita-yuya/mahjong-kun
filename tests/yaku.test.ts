@@ -1,4 +1,4 @@
-import { YakuPinhu, YakuTanyao } from "../types/yaku";
+import { YakuPinhu, YakuTanyao, YakuToiToi } from "../types/yaku";
 import { Equal, ExpectFalse, ExpectTrue } from "../types/utilType";
 import { Hand } from "../types/hand";
 
@@ -18,3 +18,8 @@ type TanyaoCase3 = ExpectTrue<IsTanyao<["o8", "o8", "o8", "I2", "I3", "I4", "C2"
 type TanyaoCase4 = ExpectFalse<IsTanyao<["o8", "o9", "o8", "I2", "I3", "I4", "C2", "C2", "C2", "I6", "I7", "I8", "C5", "C5"], "I8">>
 type TanyaoCase5 = ExpectFalse<IsTanyao<["o8", "o8", "o8", "I2", "I3", "I4", "C2", "C2", "C2", "I6", "I7", "I8", "east", "east"], "I8">>
 type TanyaoCase6 = ExpectFalse<IsTanyao<["o8", "o8", "o8", "I1", "I2", "I3", "C2", "C2", "C2", "I6", "I7", "I8", "C5", "C5"], "I8">>
+
+type IsToiToi<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuToiToi<HAND, WINNING>, "toitoi">
+type ToiToiCase1 = ExpectTrue<IsToiToi<["o2", "o2", "o2", "I2", "I2", "I2", "C5", "C5", "C5", "I6", "I6", "I6", "o4", "o4"], "o4">>
+type ToiToiCase2 = ExpectTrue<IsToiToi<["o2", "o2", "o2", "I2", "I2", "I2", "C5", "C5", "C5", "I6", "I6", "I6", "o4", "o4"], "I2">>
+type ToiToiCase3 = ExpectFalse<IsToiToi<["o2", "o2", "o2", "I2", "I2", "I2", "C5", "C5", "C5", "I5", "I6", "I7", "o4", "o4"], "I2">>
