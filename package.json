@@ -4,7 +4,11 @@
   "main": "index.ts",
   "author": "horitayuya@gmail.com",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc --noEmit && esbuild index.ts --bundle --outfile=dist/index.js"
+  },
   "devDependencies": {
+    "esbuild": "^0.14.11",
     "typescript": "^4.5.4"
   }
 }
