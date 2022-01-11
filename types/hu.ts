@@ -1,15 +1,6 @@
 // 基本符, 20
 import { ConcatAll } from "./utilType";
 
-export type HuBase = "hu20";
-
-// メンゼンロン
-export type HuMenzen = "hu10";
-
-// 待ち符, 2
-// ペンチャン、カンチャン、タンキ、ノベタン
-export type HuWinning = "hu2";
-
 type Hu = "hu20" | "hu25" | "hu10" | "hu2" | "hu4" | "hu8" | "hu16" | "hu32";
 type HuCalculate<ALL extends Hu[]> = ALL extends [infer X, ...(infer Y)] ? X extends Hu ? Y extends Hu[] ? ConcatAll<[HuValues[X], HuCalculate<Y>]> : [] : [] : []
 
