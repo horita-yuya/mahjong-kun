@@ -1,4 +1,5 @@
-import { Equal, ExpectTrue, HuValue } from "../types";
+import { Equal, HuValue } from "../types";
+import { ExpectTrue } from "./testUtil";
 
 type Case1 = ExpectTrue<Equal<HuValue<["hu20"]>, 20>>
 type Case2 = ExpectTrue<Equal<HuValue<["hu20", "hu10", "hu2"]>, 32>>

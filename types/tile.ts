@@ -14,6 +14,7 @@ export type Tile = SuitTile | HonourTile
 
 export type TileSet = [Tile, Tile, Tile]
 export type TilePair = [Tile, Tile]
+export type TileClaimed = [Tile, Tile, Tile, Tile]
 
 export type IsOne<TILE extends Tile> = TILE extends `${TileMark}${infer X}` ? Equal<X, "1"> : false
 export type IsNine<TILE extends Tile> = TILE extends `${TileMark}${infer X}` ? Equal<X, "9"> : false

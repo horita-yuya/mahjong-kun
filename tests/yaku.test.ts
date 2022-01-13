@@ -1,4 +1,5 @@
-import { Equal, ExpectFalse, ExpectTrue, Hand, YakuPinhu, YakuTanyao, YakuToiToi } from "../types";
+import { Equal, Hand, YakuPinhu, YakuTanyao, YakuToiToi } from "../types";
+import { ExpectFalse, ExpectTrue } from "./testUtil";
 
 type IsPinhu<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuPinhu<HAND, WINNING>, "pinhu">
 type PinhuCase1 = ExpectTrue<IsPinhu<["o1", "o2", "o3", "I1", "I2", "I3", "C4", "C5", "C6", "I6", "I7", "I8", "o4", "o4"], "I8">>
