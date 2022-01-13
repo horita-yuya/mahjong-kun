@@ -1,6 +1,6 @@
 
 // SameMark
-import { IsChow, IsSameMark } from "../types";
+import { IsChow, IsClaimed, IsSameMark } from "../types";
 import { ExpectFalse, ExpectTrue } from "./testUtil";
 
 type Case1 = ExpectFalse<IsSameMark<["I1", "o2", "I3"]>>
@@ -18,3 +18,9 @@ type IsChowCase2 = ExpectTrue<IsChow<["o7", "o8", "o9"]>>
 type IsChowCase3 = ExpectTrue<IsChow<["C4", "C5", "C6"]>>
 type IsChowCase4 = ExpectFalse<IsChow<["I4", "C5", "C6"]>>
 type IsChowCase5 = ExpectFalse<IsChow<["C4", "o5", "C6"]>>
+
+// IsClaimed
+type IsClaimedCase1 = ExpectTrue<IsClaimed<["I1", "I2", "I3"], ["I1"]>>
+type IsClaimedCase2 = ExpectTrue<IsClaimed<["I1", "I2", "I3"], ["I2"]>>
+type IsClaimedCase3 = ExpectTrue<IsClaimed<["I1", "I2", "I3"], ["I3"]>>
+type IsClaimedCase4 = ExpectFalse<IsClaimed<["I1", "I2", "I3"], ["I4"]>>
