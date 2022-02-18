@@ -25,8 +25,8 @@ type NakiHan = {
   ipeko: [],
 }
 
-type HanCalculate<ALL extends Yaku[]> = ALL extends [infer X, ...(infer Y)] ? X extends Yaku ? Y extends Yaku[] ? ConcatAll<[Han[X], HanCalculate<Y>]> : [] : [] : []
-type NakiHanCalculate<ALL extends Yaku[]> = ALL extends [infer X, ...(infer Y)] ? X extends Yaku ? Y extends Yaku[] ? ConcatAll<[NakiHan[X], NakiHanCalculate<Y>]> : [] : [] : []
+type HanCalculate<ALL extends Yaku[]> = ALL extends [infer X, ...infer Y] ? X extends Yaku ? Y extends Yaku[] ? ConcatAll<[Han[X], HanCalculate<Y>]> : [] : [] : []
+type NakiHanCalculate<ALL extends Yaku[]> = ALL extends [infer X, ...infer Y] ? X extends Yaku ? Y extends Yaku[] ? ConcatAll<[NakiHan[X], NakiHanCalculate<Y>]> : [] : [] : []
 
 export type HanValue<ALL extends Yaku[]> = HanCalculate<ALL>["length"]
 export type NakiHanValue<ALL extends Yaku[]> = NakiHanCalculate<ALL>["length"]

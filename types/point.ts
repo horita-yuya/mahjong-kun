@@ -1,4 +1,15 @@
-export type Calculate<HAN extends 1 | 2 | 3 | 4, HU extends 30 | 40 | 50, CASE extends "ron-child"> = CASE extends "ron-child" ? PointRonChild[`han${HAN}`][`hu${HU}`] : never
+type HuValue = 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 | 110;
+type Situation = "ron-child";// | "ron-parent" | "tumo-child" | "tumo-parent";
+type NoHan = 0;
+type LowHan = 1 | 2 | 3 | 4;
+type HighHan = 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
+
+export type Calculate<HAN extends NoHan | LowHan | HighHan | unknown, HU extends HuValue, SITUATION extends Situation> = HAN extends NoHan ? "NoPoint"
+  : HAN extends LowHan ? Point[SITUATION][`han${HAN}`][`hu${HU}`] : HAN extends HighHan ? Point[SITUATION][`han${HAN}`] : "InvalidInput";
+
+type Point = {
+  "ron-child": PointRonChild;
+}
 
 type PointRonChild = {
   "han1": {
@@ -28,21 +39,30 @@ type PointRonChild = {
     "hu40": "5200",
     "hu50": "6400",
     "hu60": "7700",
-    "hu70": "mangan",
-    "hu80": "mangan",
-    "hu90": "mangan",
-    "hu100": "mangan",
-    "hu110": "mangan",
+    "hu70": "8000",
+    "hu80": "8000",
+    "hu90": "8000",
+    "hu100": "8000",
+    "hu110": "8000",
   },
   "han4": {
     "hu30": "7700",
-    "hu40": "mangan",
-    "hu50": "mangan",
-    "hu60": "mangan",
-    "hu70": "mangan",
-    "hu80": "mangan",
-    "hu90": "mangan",
-    "hu100": "mangan",
-    "hu110": "mangan",
-  }
+    "hu40": "8000",
+    "hu50": "8000",
+    "hu60": "8000",
+    "hu70": "8000",
+    "hu80": "8000",
+    "hu90": "8000",
+    "hu100": "8000",
+    "hu110": "8000",
+  },
+  "han5": "8000",
+  "han6": "12000",
+  "han7": "12000",
+  "han8": "16000",
+  "han9": "16000",
+  "han10": "16000",
+  "han11": "24000",
+  "han12": "24000",
+  "han13": "32000"
 }
