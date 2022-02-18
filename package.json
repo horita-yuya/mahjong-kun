@@ -5,6 +5,7 @@
   "author": "horitayuya@gmail.com",
   "license": "MIT",
   "scripts": {
+    "test": "tsc --noEmit",
     "build": "tsc --noEmit && esbuild index.ts --bundle --minify --outfile=dist/index.js"
   },
   "devDependencies": {
