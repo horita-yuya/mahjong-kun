@@ -6,4 +6,4 @@ import {
   YakuAll,
 } from "./types";
 
-export type MahjongKun<HAND extends Hand, WINNING extends HAND[number]> = Calculate<HanValue<YakuAll<HAND, WINNING>>, HuValue<["hu20", "hu2"]>, "ron-child">
+export type MahjongKun<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][] = []> = Calculate<HanValue<YakuAll<HAND, WINNING>>, HuValue<["hu20", "hu2"]>, "ron-child">

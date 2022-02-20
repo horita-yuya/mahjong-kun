@@ -1,14 +1,8 @@
-import { Hand } from "./hand";
+import { Chunk1, Chunk2, Chunk3, Chunk4, Hand, Head } from "./hand";
 import { AndAll, Or4 } from "./utilType";
 import { IsChow, IsChowOrSet, IsHead, IsSet } from "./tileSet";
 import { IsRyanmen } from "./winning";
 import { IsChunChan } from "./tile";
-
-type Chunk1<HAND extends Hand> = [HAND[0], HAND[1], HAND[2]]
-type Chunk2<HAND extends Hand> = [HAND[3], HAND[4], HAND[5]]
-type Chunk3<HAND extends Hand> = [HAND[6], HAND[7], HAND[8]]
-type Chunk4<HAND extends Hand> = [HAND[9], HAND[10], HAND[11]]
-type Head<HAND extends Hand> = [HAND[12], HAND[13]]
 
 type ZeroYaku = "zero"
 export type Yaku = ZeroYaku | "richi" | "pinhu" | "menzenTumo" | "ippatu" | "tanyao" | "toitoi" | "sanshoku" | "ipeko";

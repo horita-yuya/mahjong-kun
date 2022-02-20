@@ -11,6 +11,7 @@ export type And3<X extends boolean, Y extends boolean, Z extends boolean> = And<
 export type Or<X extends boolean, Y extends boolean> = X extends true ? true : Y extends true ? true : false
 export type Or3<X extends boolean, Y extends boolean, Z extends boolean> = Or<X, Y> extends true ? true : Z extends true ? true : false
 export type Or4<X extends boolean, Y extends boolean, Z extends boolean, W extends boolean> = Or3<X, Y, Z> extends true ? true : W extends true ? true : false
+export type Or5<X extends boolean, Y extends boolean, Z extends boolean, W extends boolean, V extends boolean> = Or4<X, Y, Z, W> extends true ? true : V extends true ? true : false
 
 export type ConcatAll<ALL extends number[][]> = ALL extends [infer X, ...(infer Y)] ? X extends number[] ? Y extends number[][] ? [...X, ...ConcatAll<Y>] : [] : [] : []
 
