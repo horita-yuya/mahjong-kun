@@ -2,7 +2,7 @@ import {
   Calculate,
   Hand,
   HanValue, HuAll,
-  HuValue, WinningStyle,
+  WinningStyle,
   YakuAll,
 } from "./types";
 
