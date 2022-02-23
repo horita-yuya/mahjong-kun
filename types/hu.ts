@@ -65,6 +65,7 @@ type NextNumber = {
 type Round<T extends number> = `${T}` extends `${infer X}${Even}` ? X extends `${Number}` ? NextNumber[X] : never : T;
 
 export type HuValue<ALL extends Hu[]> = Round<HuCalculate<ALL>["length"]>
+export type HuAll<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][] = []> = HuValue<[HuBase, ...HuHand<HAND, WINNING, NAKI>]>
 
 type HuBase = "hu20";
 type HuWinning<STYLE extends WinningStyle, MENZEN extends boolean = false> = {
@@ -94,7 +95,7 @@ type HuYaoChuValue = {
   "ankan": "hu32";
 }
 
-export type HuHand<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = HuHandChunk<Chunk1<HAND>, Chunk2<HAND>, Chunk3<HAND>, Chunk4<HAND>, WINNING, NAKI>
+type HuHand<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = HuHandChunk<Chunk1<HAND>, Chunk2<HAND>, Chunk3<HAND>, Chunk4<HAND>, WINNING, NAKI>
 
 type CheckSet<SET extends TileSet, NAKI extends Tile[]> = IsSet<SET> extends true ?
   Or5<Equal<SET[0], NAKI[0]>,
