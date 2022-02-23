@@ -4,8 +4,8 @@ type NoHan = 0;
 type LowHan = 1 | 2 | 3 | 4;
 type HighHan = 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13;
 
-export type Calculate<HAN extends NoHan | LowHan | HighHan | unknown, HU extends HuValue, SITUATION extends Situation> = HAN extends NoHan ? "NoPoint"
-  : HAN extends LowHan ? Point[SITUATION][`han${HAN}`][`hu${HU}`] : HAN extends HighHan ? Point[SITUATION][`han${HAN}`] : "InvalidInput";
+export type Calculate<HAN extends NoHan | LowHan | HighHan | unknown, HU extends HuValue | unknown, SITUATION extends Situation> = HU extends HuValue ? HAN extends NoHan ? "NoPoint"
+  : HAN extends LowHan ? Point[SITUATION][`han${HAN}`][`hu${HU}`] : HAN extends HighHan ? Point[SITUATION][`han${HAN}`] : "InvalidInput" : "InvalidHu";
 
 type Point = {
   "ron-child": PointRonChild;

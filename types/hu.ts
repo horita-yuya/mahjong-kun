@@ -5,6 +5,9 @@ import { Chunk1, Chunk2, Chunk3, Chunk4, Hand } from "./hand";
 import { IsSet } from "./tileSet";
 import { IsYaochu, Tile, TileSet } from "./tile";
 
+export type HuValue<ALL extends Hu[]> = Round<HuCalculate<ALL>["length"]>
+export type HuAll<HAND extends Hand, WINNING extends HAND[number], STYLE extends WinningStyle, NAKI extends HAND[number][] = []> = HuValue<[HuBase, HuWinning<STYLE, NAKI extends [] ? true : false>, ...HuHand<HAND, WINNING, NAKI>]>
+
 type Hu = "hu20" | "hu25" | "hu10" | "hu2" | "hu4" | "hu8" | "hu16" | "hu32" | "hu0";
 type HuCalculate<ALL extends Hu[]> = ALL extends [infer X, ...(infer Y)] ? X extends Hu ? Y extends Hu[] ? ConcatAll<[HuValues[X], HuCalculate<Y>]> : [] : [] : []
 
@@ -63,9 +66,6 @@ type NextNumber = {
 }
 
 type Round<T extends number> = `${T}` extends `${infer X}${Even}` ? X extends `${Number}` ? NextNumber[X] : never : T;
-
-export type HuValue<ALL extends Hu[]> = Round<HuCalculate<ALL>["length"]>
-export type HuAll<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][] = []> = HuValue<[HuBase, ...HuHand<HAND, WINNING, NAKI>]>
 
 type HuBase = "hu20";
 type HuWinning<STYLE extends WinningStyle, MENZEN extends boolean = false> = {
