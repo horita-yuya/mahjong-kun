@@ -13,5 +13,8 @@
     "eslint": "^8.10.0",
     "prettier": "^2.5.1",
     "typescript": "^4.5.4"
+  },
+  "prettier": {
+    "printWidth": 120
   }
 }
