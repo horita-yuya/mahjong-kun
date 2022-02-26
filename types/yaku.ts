@@ -1,11 +1,12 @@
 import { Chunk1, Chunk2, Chunk3, Chunk4, Hand, Head } from "./hand";
-import { AndAll, Equal, OrAll } from "./utilType";
+import { AndAll, ConcatAll, Equal, OrAll } from "./utilType";
 import { IsChow, IsChowOrSet, IsHead, IsSet } from "./tileSet";
 import { IsRyanmen } from "./winning";
 import { IsChunChan } from "./tile";
 
-type ZeroYaku = "zero";
-export type Yaku = ZeroYaku | "richi" | "pinhu" | "menzenTumo" | "ippatu" | "tanyao" | "toitoi" | "sanshoku" | "ipeko";
+export type YakuAll<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = ConcatAll<
+  [YakuPinhu<HAND, WINNING, NAKI>, YakuTanyao<HAND, WINNING>, YakuToiToi<HAND, WINNING>, YakuIpeko<HAND, WINNING, NAKI>]
+>["length"];
 
 export type IsWinningShape<HAND extends Hand> = AndAll<
   [
@@ -16,13 +17,6 @@ export type IsWinningShape<HAND extends Hand> = AndAll<
     IsHead<Head<HAND>>
   ]
 >;
-
-export type YakuAll<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = [
-  YakuPinhu<HAND, WINNING, NAKI>,
-  YakuTanyao<HAND, WINNING>,
-  YakuToiToi<HAND, WINNING>,
-  YakuIpeko<HAND, WINNING, NAKI>
-];
 
 export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = AndAll<
   [
@@ -42,8 +36,8 @@ export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number], NAKI exte
     >
   ]
 > extends true
-  ? "pinhu"
-  : ZeroYaku;
+  ? [1]
+  : [];
 
 export type YakuTanyao<HAND extends Hand, WINNING extends HAND[number]> = AndAll<
   [
@@ -64,14 +58,14 @@ export type YakuTanyao<HAND extends Hand, WINNING extends HAND[number]> = AndAll
     IsChunChan<HAND[13]>
   ]
 > extends true
-  ? "tanyao"
-  : ZeroYaku;
+  ? [1]
+  : [];
 
 export type YakuToiToi<HAND extends Hand, WINNING extends HAND[number]> = AndAll<
   [IsSet<Chunk1<HAND>>, IsSet<Chunk2<HAND>>, IsSet<Chunk3<HAND>>, IsSet<Chunk4<HAND>>, IsHead<Head<HAND>>]
 > extends true
-  ? "toitoi"
-  : ZeroYaku;
+  ? [1, 1]
+  : [];
 
 export type YakuIpeko<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = NAKI extends []
   ? IsWinningShape<HAND> extends true
@@ -84,7 +78,7 @@ export type YakuIpeko<HAND extends Hand, WINNING extends HAND[number], NAKI exte
           AndAll<[IsChow<Chunk2<HAND>>, Equal<Chunk2<HAND>, Chunk4<HAND>>]>
         ]
       > extends true
-      ? "ipeko"
-      : ZeroYaku
-    : ZeroYaku
-  : ZeroYaku;
+      ? [1]
+      : []
+    : []
+  : [];

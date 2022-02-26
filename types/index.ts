@@ -1,4 +1,3 @@
-export * from "./han";
 export * from "./hand";
 export * from "./hu";
 export * from "./point";

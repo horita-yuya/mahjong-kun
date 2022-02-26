@@ -3,7 +3,7 @@ import { ExpectFalse, ExpectTrue } from "./testUtil";
 
 type IsPinhu<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][] = []> = Equal<
   YakuPinhu<HAND, WINNING, NAKI>,
-  "pinhu"
+  [1]
 >;
 type PinhuCase1 = ExpectTrue<
   IsPinhu<["o1", "o2", "o3", "I1", "I2", "I3", "C4", "C5", "C6", "I6", "I7", "I8", "o4", "o4"], "I8">
@@ -27,7 +27,7 @@ type PinhuCase7 = ExpectFalse<
   IsPinhu<["o1", "o2", "o3", "I1", "I2", "I3", "C4", "C5", "C6", "I6", "I7", "I8", "o4", "o4"], "o4">
 >;
 
-type IsTanyao<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuTanyao<HAND, WINNING>, "tanyao">;
+type IsTanyao<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuTanyao<HAND, WINNING>, [1]>;
 type TanyaoCase1 = ExpectTrue<
   IsTanyao<["o2", "o3", "o4", "I2", "I2", "I2", "C4", "C5", "C6", "I6", "I6", "I6", "o4", "o4"], "o3">
 >;
@@ -47,7 +47,7 @@ type TanyaoCase6 = ExpectFalse<
   IsTanyao<["o8", "o8", "o8", "I1", "I2", "I3", "C2", "C2", "C2", "I6", "I7", "I8", "C5", "C5"], "I8">
 >;
 
-type IsToiToi<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuToiToi<HAND, WINNING>, "toitoi">;
+type IsToiToi<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuToiToi<HAND, WINNING>, [1, 1]>;
 type ToiToiCase1 = ExpectTrue<
   IsToiToi<["o2", "o2", "o2", "I2", "I2", "I2", "C5", "C5", "C5", "I6", "I6", "I6", "o4", "o4"], "o4">
 >;
@@ -58,7 +58,7 @@ type ToiToiCase3 = ExpectFalse<
   IsToiToi<["o2", "o2", "o2", "I2", "I2", "I2", "C5", "C5", "C5", "I5", "I6", "I7", "o4", "o4"], "I2">
 >;
 
-type IsIpeko<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuIpeko<HAND, WINNING, []>, "ipeko">;
+type IsIpeko<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuIpeko<HAND, WINNING, []>, [1]>;
 type IpekoCase1 = ExpectTrue<
   IsIpeko<["o2", "o3", "o4", "o2", "o3", "o4", "C5", "C5", "C5", "I6", "I6", "I6", "o4", "o4"], "o2">
 >;
