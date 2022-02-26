@@ -1,4 +1,4 @@
-import { Equal, Hand, YakuPinhu, YakuTanyao, YakuToiToi } from "../types";
+import { Equal, Hand, YakuIpeko, YakuPinhu, YakuTanyao, YakuToiToi } from "../types";
 import { ExpectFalse, ExpectTrue } from "./testUtil";
 
 type IsPinhu<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][] = []> = Equal<
@@ -56,4 +56,13 @@ type ToiToiCase2 = ExpectTrue<
 >;
 type ToiToiCase3 = ExpectFalse<
   IsToiToi<["o2", "o2", "o2", "I2", "I2", "I2", "C5", "C5", "C5", "I5", "I6", "I7", "o4", "o4"], "I2">
+>;
+
+type IsIpeko<HAND extends Hand, WINNING extends HAND[number]> = Equal<YakuIpeko<HAND, WINNING, []>, "ipeko">;
+type IpekoCase1 = ExpectTrue<
+  IsIpeko<["o2", "o3", "o4", "o2", "o3", "o4", "C5", "C5", "C5", "I6", "I6", "I6", "o4", "o4"], "o2">
+>;
+
+type IpekoCase2 = ExpectTrue<
+  IsIpeko<["o2", "o3", "o4", "I2", "I2", "I2", "o2", "o3", "o4", "C5", "C5", "C5", "o4", "o4"], "o2">
 >;

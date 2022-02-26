@@ -20,7 +20,8 @@ export type IsWinningShape<HAND extends Hand> = AndAll<
 export type YakuAll<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = [
   YakuPinhu<HAND, WINNING, NAKI>,
   YakuTanyao<HAND, WINNING>,
-  YakuToiToi<HAND, WINNING>
+  YakuToiToi<HAND, WINNING>,
+  YakuIpeko<HAND, WINNING, NAKI>
 ];
 
 export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = AndAll<
@@ -73,15 +74,17 @@ export type YakuToiToi<HAND extends Hand, WINNING extends HAND[number]> = AndAll
   : ZeroYaku;
 
 export type YakuIpeko<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = NAKI extends []
-  ? OrAll<
-      [
-        AndAll<[IsChow<Chunk1<HAND>>, Equal<Chunk1<HAND>, Chunk2<HAND>>]>,
-        AndAll<[IsChow<Chunk1<HAND>>, Equal<Chunk1<HAND>, Chunk3<HAND>>]>,
-        AndAll<[IsChow<Chunk1<HAND>>, Equal<Chunk1<HAND>, Chunk4<HAND>>]>,
-        AndAll<[IsChow<Chunk2<HAND>>, Equal<Chunk2<HAND>, Chunk3<HAND>>]>,
-        AndAll<[IsChow<Chunk2<HAND>>, Equal<Chunk2<HAND>, Chunk4<HAND>>]>
-      ]
-    > extends true
-    ? "ipeko"
+  ? IsWinningShape<HAND> extends true
+    ? OrAll<
+        [
+          AndAll<[IsChow<Chunk1<HAND>>, Equal<Chunk1<HAND>, Chunk2<HAND>>]>,
+          AndAll<[IsChow<Chunk1<HAND>>, Equal<Chunk1<HAND>, Chunk3<HAND>>]>,
+          AndAll<[IsChow<Chunk1<HAND>>, Equal<Chunk1<HAND>, Chunk4<HAND>>]>,
+          AndAll<[IsChow<Chunk2<HAND>>, Equal<Chunk2<HAND>, Chunk3<HAND>>]>,
+          AndAll<[IsChow<Chunk2<HAND>>, Equal<Chunk2<HAND>, Chunk4<HAND>>]>
+        ]
+      > extends true
+      ? "ipeko"
+      : ZeroYaku
     : ZeroYaku
   : ZeroYaku;
