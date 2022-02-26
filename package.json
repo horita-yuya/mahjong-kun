@@ -10,6 +10,8 @@
   },
   "devDependencies": {
     "esbuild": "^0.14.11",
+    "eslint": "^8.10.0",
+    "prettier": "^2.5.1",
     "typescript": "^4.5.4"
   }
 }
