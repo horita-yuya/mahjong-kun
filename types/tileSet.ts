@@ -1,7 +1,7 @@
 import { Tile, TileMark, TilePair, TileSet } from "./tile";
 import { And, Contains, Equal, IsContinuousNumber, Num, Or, OrAll } from "./utilType";
 
-export type IsHead<PAIR extends TilePair> = Equal<PAIR[0], PAIR[1]>;
+export type IsPair<PAIR extends TilePair> = Equal<PAIR[0], PAIR[1]>;
 
 export type IsSameMark<SET extends TileSet> = SET extends [
   `${infer XMARK}${Num}`,

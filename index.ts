@@ -1,8 +1,22 @@
-import { Calculate, Hand, HuAll, WinningStyle, YakuAll } from "./types";
+import { Calculate, Hand, HuAll, WinningStyle, YakuAll, YakuChitoitsu, YakuPinhu } from "./types";
+import { Position } from "./types/field";
 
 export type MahjongKun<
   HAND extends Hand,
   WINNING extends HAND[number],
+  NAKI extends HAND[number][],
   STYLE extends WinningStyle,
-  NAKI extends HAND[number][] = []
-> = Calculate<YakuAll<HAND, WINNING, NAKI>, HuAll<HAND, WINNING, STYLE, NAKI>, "ron-child">;
+  POSITION extends Position
+> = Calculate<
+  YakuAll<HAND, WINNING, NAKI>,
+  HuAll<HAND, WINNING, STYLE, NAKI>,
+  STYLE,
+  POSITION,
+  YakuChitoitsu<HAND, WINNING> extends [1, 1]
+    ? "chitoitsu"
+    : STYLE extends "tumo"
+    ? YakuPinhu<HAND, WINNING, NAKI> extends [1]
+      ? "pin-tumo"
+      : null
+    : null
+>;
