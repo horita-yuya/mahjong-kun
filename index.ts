@@ -9,7 +9,7 @@ export type MahjongKun<
   POSITION extends Position
 > = Calculate<
   YakuAll<HAND, WINNING, NAKI>,
-  HuAll<HAND, WINNING, STYLE, NAKI>,
+  HuAll<HAND, WINNING, NAKI, STYLE>,
   STYLE,
   POSITION,
   YakuChitoitsu<HAND, WINNING> extends [1, 1]
