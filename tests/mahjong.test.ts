@@ -54,3 +54,11 @@ type Case1_2_3 = ExpectTrue<
     "2000"
   >
 >;
+
+// TODO: 分岐がある場合、最大の数字が取れるようにする
+// type Case1_2_4 = ExpectTrue<
+//   Equal<
+//     RonChildCase<["o2", "o3", "o4", "o2", "o3", "o4", "C7", "C8", "C9", "I5", "I6", "I7", "o2", "o2"], "o2", []>,
+//     "2000"
+//   >
+// >;

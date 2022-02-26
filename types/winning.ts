@@ -1,4 +1,4 @@
-import { IsNine, IsOne, TileSet } from "./tile";
+import { IsNine, IsOne, TilePair, TileSet } from "./tile";
 import { And, AndAll, Equal, Not, Or } from "./utilType";
 import { IsChow } from "./tileSet";
 
@@ -16,4 +16,9 @@ export type IsPencyan<SET extends TileSet, WINNING extends SET[number]> = Or<
 export type IsRyanmen<SET extends TileSet, WINNING extends SET[number]> = And<
   Not<IsPencyan<SET, WINNING>>,
   And<IsChow<SET>, Or<Equal<WINNING, SET[0]>, Equal<WINNING, SET[2]>>>
+>;
+
+export type IsTanki<PAIR extends TilePair, WINNING extends PAIR[number]> = Or<
+  Equal<PAIR[0], WINNING>,
+  Equal<PAIR[1], WINNING>
 >;
