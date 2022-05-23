@@ -32,6 +32,13 @@ type Case1_1_3 = ExpectTrue<
   >
 >;
 
+type Case1_1_4 = ExpectTrue<
+  Equal<
+    RonChildCase<["o2", "o3", "o4", "I2", "I3", "I4", "C4", "C5", "C6", "I5", "I6", "I7", "o4", "o4"], "o3", []>,
+    "1300"
+  >
+>;
+
 // 1_2 一盃口のみ
 type Case1_2_1 = ExpectTrue<
   Equal<
