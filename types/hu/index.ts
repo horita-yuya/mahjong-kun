@@ -17,14 +17,30 @@ import { HuWinning } from "./huWinning";
 import { HuRoundedValue } from "./util";
 import { HuMachi } from "./huMachi";
 
-type Hu = HuValue20 | HuValue25 | HuValue10 | HuValue2 | HuValue4 | HuValue8 | HuValue16 | HuValue32 | HuValue0;
-export type HuValue<ALL extends Hu[]> = HuRoundedValue<ConcatAll<ALL>["length"]>;
+type Hu =
+  | HuValue20
+  | HuValue25
+  | HuValue10
+  | HuValue2
+  | HuValue4
+  | HuValue8
+  | HuValue16
+  | HuValue32
+  | HuValue0;
+export type HuValue<ALL extends Hu[]> = HuRoundedValue<
+  ConcatAll<ALL>["length"]
+>;
 
 export type HuAll<
   HAND extends Hand,
   WINNING extends HAND[number],
   NAKI extends HAND[number][],
-  STYLE extends WinningStyle
+  STYLE extends WinningStyle,
 > = HuValue<
-  [HuValue20, HuWinning<STYLE, NAKI extends [] ? true : false>, ...HuSet<HAND, WINNING, NAKI>, HuMachi<HAND, WINNING>]
+  [
+    HuValue20,
+    HuWinning<STYLE, NAKI extends [] ? true : false>,
+    ...HuSet<HAND, WINNING, NAKI>,
+    HuMachi<HAND, WINNING>,
+  ]
 >;

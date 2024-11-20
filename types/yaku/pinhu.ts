@@ -3,7 +3,11 @@ import { AndAll, Equal, OrAll } from "../utilType";
 import { IsChow, IsPair } from "../tileSet";
 import { IsRyanmen } from "../winning";
 
-export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = AndAll<
+export type YakuPinhu<
+  HAND extends Hand,
+  WINNING extends HAND[number],
+  NAKI extends HAND[number][],
+> = AndAll<
   [
     Equal<NAKI, []>,
     IsChow<Chunk1<HAND>>,
@@ -16,9 +20,9 @@ export type YakuPinhu<HAND extends Hand, WINNING extends HAND[number], NAKI exte
         IsRyanmen<Chunk1<HAND>, WINNING>,
         IsRyanmen<Chunk2<HAND>, WINNING>,
         IsRyanmen<Chunk3<HAND>, WINNING>,
-        IsRyanmen<Chunk4<HAND>, WINNING>
+        IsRyanmen<Chunk4<HAND>, WINNING>,
       ]
-    >
+    >,
   ]
 > extends true
   ? [1]

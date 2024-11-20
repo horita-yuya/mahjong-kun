@@ -14,8 +14,9 @@ type NextNumber = {
   "11": 120;
 };
 
-export type HuRoundedValue<T extends number> = `${T}` extends `${infer X}${Even}`
-  ? X extends `${Number}`
-    ? NextNumber[X]
-    : never
-  : T;
+export type HuRoundedValue<T extends number> =
+  `${T}` extends `${infer X}${Even}`
+    ? X extends `${Number}`
+      ? NextNumber[X]
+      : never
+    : T;

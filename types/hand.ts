@@ -1,6 +1,21 @@
 import { Tile } from "./tile";
 
-export type Hand = [Tile, Tile, Tile, Tile, Tile, Tile, Tile, Tile, Tile, Tile, Tile, Tile, Tile, Tile];
+export type Hand = [
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+  Tile,
+];
 
 export type Chunk1<HAND extends Hand> = [HAND[0], HAND[1], HAND[2]];
 export type Chunk2<HAND extends Hand> = [HAND[3], HAND[4], HAND[5]];

@@ -8,6 +8,6 @@ export type IsWinningShape<HAND extends Hand> = AndAll<
     IsChowOrSet<Chunk2<HAND>>,
     IsChowOrSet<Chunk3<HAND>>,
     IsChowOrSet<Chunk4<HAND>>,
-    IsPair<Pair<HAND>>
+    IsPair<Pair<HAND>>,
   ]
 >;
