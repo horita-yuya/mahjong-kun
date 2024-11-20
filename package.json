@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "test": "tsc --noEmit",
-    "build": "tsc --noEmit && esbuild index.ts --bundle --minify --outfile=dist/index.js"
+    "build": "tsc ./index.ts --declaration --outDir ./dist --emitDeclarationOnly"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
