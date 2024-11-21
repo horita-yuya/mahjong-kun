@@ -1,16 +1,25 @@
 {
   "name": "mahjong-kun",
-  "version": "1.0.0",
-  "main": "index.ts",
+  "version": "1.5.0",
   "author": "horitayuya@gmail.com",
   "license": "MIT",
+  "files": ["dist", "package.json", "README.md"],
   "scripts": {
     "test": "tsc --noEmit",
-    "build": "tsc ./index.ts --declaration --outDir ./dist --emitDeclarationOnly"
+    "build": "tsc ./index.ts --declaration --outDir ./dist --emitDeclarationOnly",
+    "pub": "yarn build && npm publish --access public"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "esbuild": "^0.24.0",
     "typescript": "^5.6.3"
-  }
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts"
+      }
+    }
+  },
+  "types": "./dist/index.d.ts"
 }

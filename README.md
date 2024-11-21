@@ -1,5 +1,9 @@
 # mahjong-kun
 
+```shell
+npm install mahjong-kun
+```
+
 麻雀の点数計算君
 
 ```typescript
