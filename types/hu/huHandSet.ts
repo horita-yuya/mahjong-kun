@@ -1,10 +1,21 @@
-import { HuValue0, HuValue16, HuValue2, HuValue32, HuValue4, HuValue8 } from "../huValues";
+import {
+  HuValue0,
+  HuValue16,
+  HuValue2,
+  HuValue32,
+  HuValue4,
+  HuValue8,
+} from "../huValues";
 import { Chunk1, Chunk2, Chunk3, Chunk4, Hand } from "../hand";
 import { IsYaochu, Tile, TileSet } from "../tile";
 import { IsSet } from "../tileSet";
 import { Equal, OrAll } from "../utilType";
 
-export type HuSet<HAND extends Hand, WINNING extends HAND[number], NAKI extends HAND[number][]> = HuHandSet<
+export type HuSet<
+  HAND extends Hand,
+  WINNING extends HAND[number],
+  NAKI extends HAND[number][],
+> = HuHandSet<
   Chunk1<HAND>,
   Chunk2<HAND>,
   Chunk3<HAND>,
@@ -30,21 +41,26 @@ type HuSetValues = {
   };
 };
 
-type CheckSetKind<SET extends TileSet, NAKI extends Tile[]> = IsSet<SET> extends true
+type CheckSetKind<
+  SET extends TileSet,
+  NAKI extends Tile[],
+> = IsSet<SET> extends true
   ? OrAll<
       [
         Equal<SET[0], NAKI[0]>,
         Equal<SET[0], NAKI[1]>,
         Equal<SET[0], NAKI[2]>,
         Equal<SET[0], NAKI[3]>,
-        Equal<SET[0], NAKI[4]>
+        Equal<SET[0], NAKI[4]>,
       ]
     > extends true
     ? "minko"
     : "anko"
   : "shuntu";
 
-type SetHuValue<SET extends TileSet, NAKI extends Tile[]> = IsYaochu<SET[0]> extends true
+type SetHuValue<SET extends TileSet, NAKI extends Tile[]> = IsYaochu<
+  SET[0]
+> extends true
   ? HuSetValues["yao-chu"][CheckSetKind<SET, NAKI>]
   : HuSetValues["chun-chan"][CheckSetKind<SET, NAKI>];
 
@@ -54,10 +70,10 @@ type HuHandSet<
   C3 extends TileSet,
   C4 extends TileSet,
   WINNING extends Tile,
-  NAKI extends Tile[]
+  NAKI extends Tile[],
 > = [
   SetHuValue<C1, [WINNING, ...NAKI]>,
   SetHuValue<C2, [WINNING, ...NAKI]>,
   SetHuValue<C3, [WINNING, ...NAKI]>,
-  SetHuValue<C4, [WINNING, ...NAKI]>
+  SetHuValue<C4, [WINNING, ...NAKI]>,
 ];

@@ -9,7 +9,7 @@ export type HuMachi<HAND extends Hand, WINNING extends HAND[number]> = OrAll<
     IsKanchan<Chunk2<HAND>, WINNING>,
     IsKanchan<Chunk3<HAND>, WINNING>,
     IsKanchan<Chunk4<HAND>, WINNING>,
-    IsTanki<Pair<HAND>, WINNING>
+    IsTanki<Pair<HAND>, WINNING>,
   ]
 > extends true
   ? HuValue2

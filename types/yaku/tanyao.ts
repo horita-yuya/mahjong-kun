@@ -3,7 +3,10 @@ import { AndAll } from "../utilType";
 import { IsChunChan } from "../tile";
 import { IsWinningShape } from "./util";
 
-export type YakuTanyao<HAND extends Hand, WINNING extends HAND[number]> = AndAll<
+export type YakuTanyao<
+  HAND extends Hand,
+  WINNING extends HAND[number],
+> = AndAll<
   [
     IsWinningShape<HAND>,
     IsChunChan<HAND[0]>,
@@ -19,7 +22,7 @@ export type YakuTanyao<HAND extends Hand, WINNING extends HAND[number]> = AndAll
     IsChunChan<HAND[10]>,
     IsChunChan<HAND[11]>,
     IsChunChan<HAND[12]>,
-    IsChunChan<HAND[13]>
+    IsChunChan<HAND[13]>,
   ]
 > extends true
   ? [1]

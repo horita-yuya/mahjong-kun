@@ -4,7 +4,10 @@ import { IsChow } from "./tileSet";
 
 export type WinningStyle = "ron" | "tumo";
 
-export type IsKanchan<SET extends TileSet, WINNING extends SET[number]> = And<IsChow<SET>, Equal<WINNING, SET[1]>>;
+export type IsKanchan<SET extends TileSet, WINNING extends SET[number]> = And<
+  IsChow<SET>,
+  Equal<WINNING, SET[1]>
+>;
 
 export type IsPencyan<SET extends TileSet, WINNING extends SET[number]> = Or<
   // 1, 2, '3'

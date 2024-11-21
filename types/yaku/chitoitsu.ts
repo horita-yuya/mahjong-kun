@@ -1,8 +1,11 @@
-import { Hand } from "../hand";
-import { AndAll, Equal, Not } from "../utilType";
-import { IsPair } from "../tileSet";
+import type { Hand } from "../hand";
+import type { IsPair } from "../tileSet";
+import type { AndAll, Equal, Not } from "../utilType";
 
-export type YakuChitoitsu<HAND extends Hand, WINNING extends HAND[number]> = AndAll<
+export type YakuChitoitsu<
+  HAND extends Hand,
+  WINNING extends HAND[number],
+> = AndAll<
   [
     AndAll<
       [
@@ -26,7 +29,7 @@ export type YakuChitoitsu<HAND extends Hand, WINNING extends HAND[number]> = And
         Not<Equal<HAND[6], HAND[12]>>,
         Not<Equal<HAND[8], HAND[10]>>,
         Not<Equal<HAND[8], HAND[12]>>,
-        Not<Equal<HAND[10], HAND[12]>>
+        Not<Equal<HAND[10], HAND[12]>>,
       ]
     >,
     IsPair<[HAND[0], HAND[1]]>,
@@ -35,7 +38,7 @@ export type YakuChitoitsu<HAND extends Hand, WINNING extends HAND[number]> = And
     IsPair<[HAND[6], HAND[7]]>,
     IsPair<[HAND[8], HAND[9]]>,
     IsPair<[HAND[10], HAND[11]]>,
-    IsPair<[HAND[12], HAND[13]]>
+    IsPair<[HAND[12], HAND[13]]>,
   ]
 > extends true
   ? [1, 1]

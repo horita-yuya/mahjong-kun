@@ -15,14 +15,27 @@ export type Tile = SuitTile | HonourTile;
 export type TileSet = [Tile, Tile, Tile];
 export type TilePair = [Tile, Tile];
 
-export type IsOne<TILE extends Tile> = TILE extends `${TileMark}${infer X}` ? Equal<X, "1"> : false;
-export type IsNine<TILE extends Tile> = TILE extends `${TileMark}${infer X}` ? Equal<X, "9"> : false;
+export type IsOne<TILE extends Tile> = TILE extends `${TileMark}${infer X}`
+  ? Equal<X, "1">
+  : false;
+export type IsNine<TILE extends Tile> = TILE extends `${TileMark}${infer X}`
+  ? Equal<X, "9">
+  : false;
 
 export type IsWind<TILE extends Tile> = OrAll<
-  [Equal<TILE, "east">, Equal<TILE, "south">, Equal<TILE, "west">, Equal<TILE, "north">]
+  [
+    Equal<TILE, "east">,
+    Equal<TILE, "south">,
+    Equal<TILE, "west">,
+    Equal<TILE, "north">,
+  ]
 >;
-export type IsDragon<TILE extends Tile> = OrAll<[Equal<TILE, "white">, Equal<TILE, "green">, Equal<TILE, "red">]>;
+export type IsDragon<TILE extends Tile> = OrAll<
+  [Equal<TILE, "white">, Equal<TILE, "green">, Equal<TILE, "red">]
+>;
 export type IsHonour<TILE extends Tile> = Or<IsWind<TILE>, IsDragon<TILE>>;
 
-export type IsYaochu<TILE extends Tile> = OrAll<[IsOne<TILE>, IsNine<TILE>, IsHonour<TILE>]>;
+export type IsYaochu<TILE extends Tile> = OrAll<
+  [IsOne<TILE>, IsNine<TILE>, IsHonour<TILE>]
+>;
 export type IsChunChan<TILE extends Tile> = Not<IsYaochu<TILE>>;
